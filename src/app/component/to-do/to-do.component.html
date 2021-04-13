@@ -1,0 +1,63 @@
+<div class="container">
+  <h2>My wishlist:</h2>
+
+  <div *ngIf="todoError?.message">
+    <div class="alert alert-danger" role="alert">
+      Some error occoured. Please try again
+    </div>
+  </div>
+
+  <ng-container *ngFor="let todo of ToDoList; let i = index">
+    <div class="row">
+      <div class="col-md-1"><h5>Id:</h5></div>
+      <div class="col">{{ todo.id }}</div>
+      <div class="col-md-2"><h5>Name:</h5></div>
+      <div class="col-md-2 todoItem">{{ todo.Title }}</div>
+      <div class="col-md-2"><h5>IsCompleted:</h5></div>
+      <div class="col-md-2 todoItem">{{ todo.IsCompleted }}</div>
+      <button class="btn btn-primary" (click)="deleteWish(todo.id)">
+        Delete
+      </button>
+      <br />
+    </div>
+  </ng-container>
+</div>
+
+<hr />
+
+<div class="container form-group" style="margin: 10px">
+  <h3>Create New Wish</h3>
+  <form (ngSubmit)="createToDo()">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <input
+          [(ngModel)]="Title"
+          placeholder="Enter your wish"
+          class="form-control"
+          name="Title"
+          style="min-width: 150px"
+        />
+      </div>
+
+      <div
+        class="col-md-2 form-check"
+        style="margin-top: 10px; margin-left: 30px"
+      >
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="IsCompleted"
+          name="IsCompleted"
+          [(ngModel)]="IsCompleted"
+        />
+        <label for="IsCompleted" class="form-check-label">Completed?</label>
+      </div>
+
+      <div class="col-md-2">
+        <button typ="submit" class="btn btn-primary" style="width: 70px">
+          Add
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
